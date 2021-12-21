@@ -5,7 +5,7 @@
 #include <chrono>
 #include "constants.cpp"
 
-// DA AGDOWNNGERE: 
+// DA AGGIUNGERE: 
 // (2) Miglioramenti grafici
 // (3) Fare in modo che ogni 10 livelli (ad esempio) vengano aumentate le dimensioni del labirinto di 1 --> qundi (h = h + 1) e (b = b + 1)
 
@@ -128,8 +128,17 @@ class Labirinto {
 			cin >> PLAYER;
 		}
 	
-	private:
+		void viewCommands() {
+			system("cls");
+			cout << endl << "========================== Commands =========================" << endl << endl;
+			cout << "- ARROW UP --> Move up" << endl;
+			cout << "- ARROW DOWN --> Move down" << endl;
+			cout << "- ARROW RIGHT --> Move to the right" << endl;
+			cout << "- ARROW LEFT --> Move to the left" << endl << endl;
+			system("pause"); 
+		}
 	
+	private:
 		bool getEndLine(char param) {
 			for (int i = 0; i < DIM; i ++) {
 				if (this->lab[i].back() == param) {
@@ -228,6 +237,7 @@ char menu() {
 	cout << "- Insert " << EXIT << " to end the program" << endl;
 	cout << "- Insert " << FIRSTOPTION << " to start the labyrinth" << endl;
 	cout << "- Insert " << SECONDOPTION << " to set your avatar" << endl;
+	cout << "- Insert " << THIRDOPTION << " to view commands" << endl;
 	cin >> choice;
 	return choice;
 }
@@ -261,7 +271,9 @@ int main() {
 			case SECONDOPTION:
 				labirinto.setPlayer();
 				break;
-			
+			case THIRDOPTION:
+				labirinto.viewCommands();
+				break;
 			case EXIT:
 				system("cls");
 				cout << endl << "================= PROGRAM FINISHED =================" << endl;

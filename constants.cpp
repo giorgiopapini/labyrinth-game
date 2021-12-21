@@ -25,4 +25,5 @@ const int DIM = 11;
 const char EXIT = '0';
 const char FIRSTOPTION = '1';
 const char SECONDOPTION = '2';
+const char THIRDOPTION = '3';
 
