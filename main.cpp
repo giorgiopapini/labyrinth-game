@@ -5,10 +5,6 @@
 #include <chrono>
 #include "constants.cpp"
 
-// DA AGGIUNGERE: 
-// (2) Miglioramenti grafici
-// (3) Fare in modo che ogni 10 livelli (ad esempio) vengano aumentate le dimensioni del labirinto di 1 --> qundi (h = h + 1) e (b = b + 1)
-
 using namespace std;
 
 class Labirinto {
@@ -72,14 +68,14 @@ class Labirinto {
 		}
 
 		void createRoad() {
-			int xDelta = 3;  // Le - sono 3 da rimuovere, quindi deve esserci un ciclo che le rimuove tutte e 3
+			int xDelta = 3;
 			bool done;
 			while (done == false) {
 				int dir = rand() % 3;
-				switch(dir) { // IMPORTANTE!!! --> Verificare che il codice funzioni correttamente in tutte le direzioni, forse non va a sinistra e in UP?
+				switch(dir) { 
 					case 0:
 						// UP
-						if (this->checkRemoval(this->y - 2, VERTICAL)) {  // IMPORTANTE!!! --> Capire come rendere meno ridondante il codice all'interno dello switch
+						if (this->checkRemoval(this->y - 2, VERTICAL)) {
 							for (int i = 0; i < 3; i ++) {
 								this->lab[this->y - 1][this->x + i] = ' ';
 							}
@@ -101,20 +97,8 @@ class Labirinto {
 							for (int i = 0; i < 3; i ++) {
 								this->lab[this->y][this->x + i + xDelta] = ' ';
 							}
-							this->x += xDelta + 1;  // Sistemare questa variabile in modo da renderla meno hardwritten
+							this->x += xDelta + 1;
 						}
-						break;
-					case 3:
-						// LEFT
-						/*
-						if (this->checkRemoval(this->x - xDelta, HORIZONTAL)) {
-							for (int i = 0; i < 3; i ++) {
-								this->lab[this->y][this->x - i - xDelta] = ' ';
-							}
-							this->x -= xDelta - 1;  // sistemare questa variabile
-							//done = true;  // IMPORTANTE!!! --> Rimuovere il done da qui
-						}
-						*/
 						break;
 				}
 				done = this->getEndLine(' ');
@@ -174,14 +158,14 @@ class Labirinto {
 				return HORI1.length();
 			}
 			else {
-				return DIM - 1;  // Dato che DIM uguale ad altezza del labirinto (n di righe orizzontali) 
+				return DIM - 1;
 			}
 		}
 		
 		bool checkMotion(int val, char carUPcc, char ori) {
 			int len = this->ottieniLunghezza(ori);
 			if (val > 0 && val < len) {
-				if (carUPcc != '-' && carUPcc != '+' && carUPcc != '|') {  // IMPORTANTE!!! --> Scrivere questi ostacoli attraverso delle variabili, magari un array di caratteri
+				if (carUPcc != '-' && carUPcc != '+' && carUPcc != '|') {
 					return true;
 				}
 			}
@@ -254,19 +238,16 @@ string getName() {
 
 int main() {
 	
-	// LABIRINTO
-	
 	srand(time(NULL));
 	
 	string playerName = getName();
-	
 	while(true) {
 		Labirinto labirinto;
 		char choice = menu();
 		switch(choice) {
 			case FIRSTOPTION:
 				labirinto.playerName = playerName;
-				labirinto.startGame();  // IMPORTANTE!!! --> Passare informazioni come (numero di level, name del giocatore) dentro questo metodo qui
+				labirinto.startGame();
 				break;
 			case SECONDOPTION:
 				labirinto.setPlayer();
