@@ -7,7 +7,7 @@
 
 using namespace std;
 
-class Labirinto {
+class Labyrinth {
 	public:
 		string playerName;
 		string lab[DIM];
@@ -153,7 +153,7 @@ class Labirinto {
 			}
 		}
 		
-		int ottieniLunghezza(char ori) {
+		int getLength(char ori) {
 			if (ori == HORIZONTAL) {
 				return HORI1.length();
 			}
@@ -163,7 +163,7 @@ class Labirinto {
 		}
 		
 		bool checkMotion(int val, char carUPcc, char ori) {
-			int len = this->ottieniLunghezza(ori);
+			int len = this->getLength(ori);
 			if (val > 0 && val < len) {
 				if (carUPcc != '-' && carUPcc != '+' && carUPcc != '|') {
 					return true;
@@ -242,18 +242,18 @@ int main() {
 	
 	string playerName = getName();
 	while(true) {
-		Labirinto labirinto;
+		Labyrinth labyrinth;
 		char choice = menu();
 		switch(choice) {
 			case FIRSTOPTION:
-				labirinto.playerName = playerName;
-				labirinto.startGame();
+				labyrinth.playerName = playerName;
+				labyrinth.startGame();
 				break;
 			case SECONDOPTION:
-				labirinto.setPlayer();
+				labyrinth.setPlayer();
 				break;
 			case THIRDOPTION:
-				labirinto.viewCommands();
+				labyrinth.viewCommands();
 				break;
 			case EXIT:
 				system("cls");
